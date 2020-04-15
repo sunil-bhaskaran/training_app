@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:trainig_app/train/ResponseScreen.dart';
+
 
 void main() => runApp(MyApp());
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -23,24 +43,6 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -107,6 +109,54 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+      drawer: Drawer(
+        elevation: 16.0,
+        child: Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("xyz"),
+              accountEmail: Text("xyz@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text("xyz"),
+              ),
+              otherAccountsPictures: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Text("abc"),
+                )
+              ],
+            ),
+            ListTile(
+              title: new Text("All Inboxes"),
+              leading: new Icon(Icons.mail),
+              onTap: () {
+                //Navigator.pushNamed(context, "main");
+                Navigator.of(context).push(MaterialPageRoute<Null>(
+                    builder: (BuildContext context) {
+                      return new ResponseScreen(
+                      );
+                    }));
+              },
+            ),
+            Divider(
+              height: 0.1,
+            ),
+            ListTile(
+              title: new Text("Primary"),
+              leading: new Icon(Icons.inbox),
+            ),
+            ListTile(
+              title: new Text("Social"),
+              leading: new Icon(Icons.people),
+            ),
+            ListTile(
+              title: new Text("Promotions"),
+              leading: new Icon(Icons.local_offer),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
