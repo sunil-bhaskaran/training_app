@@ -109,6 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+      //Following is the additional code added for the training purpose.
       drawer: Drawer(
         elevation: 16.0,
         child: Column(
